@@ -1,0 +1,4 @@
+interface:
+  display_name: "视频号链接下载"
+  short_description: "在隔离浏览器会话中解析、下载并校验视频号 MP4"
+  default_prompt: "Use $wx-channels-download to download and verify an authorized WeChat Channels video from this official share link."
