@@ -18,3 +18,12 @@ Files containing upstream-derived material include, at minimum, `SKILL.md`, `_me
 Clearly original Randy-maintained additions include the macOS launch/setup scripts, repository documentation, CI workflow, package builder, and tests. The license grant for those original additions is scoped in `LICENSE-RANDY-ADDITIONS.md` and does not extend to upstream-derived material.
 
 If the upstream author publishes license terms, or if documented redistribution authorization becomes available, update this notice before changing the repository-wide license status.
+
+## Optional wx-downloader CLI skill
+
+`skills/wx-downloader/` contains independently authored workflow instructions,
+UI metadata and a local media verifier. It invokes the separately installed
+[QinGeneral/wx-downloader](https://github.com/QinGeneral/wx-downloader) CLI and
+does not vendor that project's source code or distribution. The CLI's license
+and dependency terms remain those of its upstream project. The original files
+within this subdirectory are covered by their own `LICENSE`.

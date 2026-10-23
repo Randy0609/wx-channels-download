@@ -1,0 +1,4 @@
+interface:
+  display_name: "视频号下载"
+  short_description: "用 wx-downloader 下载官方视频号分享链接并核验本地 MP4"
+  default_prompt: "请用 $wx-downloader 下载这个视频号分享链接，保存到本机并检查音视频完整性。"

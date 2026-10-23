@@ -35,6 +35,16 @@ def main() -> int:
         if not (ROOT / relative).is_file():
             fail(f"missing required file: {relative}")
 
+    child = ROOT / "skills/wx-downloader"
+    for relative in ("SKILL.md", "agents/openai.yaml", "scripts/verify_media.py", "LICENSE"):
+        if not (child / relative).is_file():
+            fail(f"missing wx-downloader skill file: {relative}")
+    child_text = (child / "SKILL.md").read_text(encoding="utf-8")
+    child_header = re.match(r"\A---\n(.*?)\n---\n", child_text, flags=re.DOTALL)
+    if not child_header or not re.search(r"(?m)^name: wx-downloader$", child_header.group(1)):
+        fail("unexpected wx-downloader skill frontmatter")
+    ast.parse((child / "scripts/verify_media.py").read_text(encoding="utf-8"))
+
     skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
     if not skill_text.startswith("---\n"):
         fail("SKILL.md must begin with YAML frontmatter")

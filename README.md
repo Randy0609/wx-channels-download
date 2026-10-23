@@ -6,6 +6,28 @@
 
 这是一个可被 Codex、DeepSeek Harness（DSH）和 WorkBuddy 共用的文件夹式 Skill。仓库根目录直接包含 `SKILL.md`，GitHub Release 另提供不带 Git 历史的安装 ZIP。
 
+## 基于 wx-downloader 的独立技能
+
+新增 [skills/wx-downloader/SKILL.md](https://github.com/Randy0609/wx-channels-download/blob/main/skills/wx-downloader/SKILL.md)：使用 [QinGeneral/wx-downloader](https://github.com/QinGeneral/wx-downloader) 解析分享链接并下载，附本地文件、SHA-256、ffprobe 和完整 FFmpeg 解码校验。已在 macOS Apple Silicon、Chrome、CLI `0.1.2` 上完成真实下载验证。
+
+这个子技能调用外部 CLI，不复制其下载器源码，也不要求启动仓库根目录的下载服务。需要用户在独立元宝窗口完成登录，无需安装证书或调整系统代理。下面的根目录安全实现、runner 命令和旧版 Release ZIP 说明仅对应原有 `wx-channels-download` 技能；子技能的操作以自身 `SKILL.md` 为准。
+
+安装到 Codex 的示例（目标目录已存在时先比较，避免覆盖）：
+
+```bash
+git clone --depth 1 https://github.com/Randy0609/wx-channels-download.git
+mkdir -p "$HOME/.codex/skills"
+test ! -e "$HOME/.codex/skills/wx-downloader" && \
+  cp -R wx-channels-download/skills/wx-downloader "$HOME/.codex/skills/wx-downloader"
+uv tool install --default-index https://pypi.org/simple wx-downloader==0.1.2
+```
+
+将整个 `wx-downloader/` 子目录复制到其他客户端实际使用的技能目录也可；客户端发现和实际执行需要分别检查。现有 `wx-channels-download-v1.1.0-randy.1.zip` 不包含这个新增子技能。
+
+调用示例：`用 $wx-downloader 下载这个视频号分享链接，并验证音视频完整性。`
+
+附带校验脚本只核验本地成品，不读取登录凭据、不访问网络。缺少 ffprobe 或未执行完整解码时，会明确保留未验证状态。子技能的原始说明和校验代码采用子目录内 [LICENSE](https://github.com/Randy0609/wx-channels-download/blob/main/skills/wx-downloader/LICENSE)；外部 CLI 仍遵循自己的许可。
+
 ## 安全边界
 
 - 只接受用户提供的官方 `weixin.qq.com/sph` HTTPS 链接。

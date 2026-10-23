@@ -8,3 +8,7 @@ dist/
 profiles/
 runtime/
 settings.json
+auth.json
+storage_state*.json
+*.cookies
+.wx-*.json

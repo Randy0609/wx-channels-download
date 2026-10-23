@@ -17,6 +17,7 @@ This grant applies only to copyrightable Randy-authored original material in:
 - `.github/workflows/validate.yml`
 - `tests/`
 - `tools/`
+- `skills/wx-downloader/` (independently authored CLI workflow and media verifier)
 - the Randy-authored portions of `README.md`, `CHANGELOG.md`, `THIRD_PARTY_NOTICES.md`, and this file
 
 It does **not** apply to upstream-derived material identified in `THIRD_PARTY_NOTICES.md`, and it does not purport to grant rights that Randy0609 does not own.
