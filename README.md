@@ -6,6 +6,29 @@
 
 这是一个可被 Codex、DeepSeek Harness（DSH）和 WorkBuddy 共用的文件夹式 Skill。仓库根目录直接包含 `SKILL.md`，GitHub Release 另提供不带 Git 历史的安装 ZIP。
 
+## 让同事的 Codex 代为安装
+
+推荐安装 [wx-downloader 子技能](https://github.com/Randy0609/wx-channels-download/tree/main/skills/wx-downloader)。将下面这段话直接发给同事的 Codex，由 Codex 完成安装和检查，无需同事手动执行终端命令：
+
+```text
+请帮我安装这个视频号下载技能：
+https://github.com/Randy0609/wx-channels-download/tree/main/skills/wx-downloader
+
+安装目标是仓库里的 skills/wx-downloader 子目录，技能名为 wx-downloader。
+请先阅读 SKILL.md，检查本机系统、Codex 实际技能目录、Python、Chrome 和 wx-downloader。
+请代我完成技能及必要依赖的安装，复用可用环境；已有同名技能时先比较，保留本地修改。
+如需安装第三方组件，使用官方来源和隔离环境；不要修改系统安全设置或代理。
+首次下载需要腾讯元宝登录时，请打开登录窗口并告诉我，由我本人完成扫码或验证。
+请分别报告技能安装、客户端发现、依赖可用和真实下载验收的状态。
+缺少测试链接时先完成安装检查，等我提供有权保存的官方视频号分享链接后再做下载测试。
+```
+
+技能可在后续 Codex 对话中使用；如果客户端未发现，按当前客户端的刷新方式处理。使用时发送：`用 $wx-downloader 下载这个视频号链接：<官方分享链接>`。
+
+同事需要在自己的设备上完成腾讯元宝登录。技能包不包含登录状态或视频文件，也不包含微信发附件能力；文件交付方式按同事所在客户端的实际能力处理。
+
+子技能依赖 Python 3.10+、Chrome 和外部 CLI `wx-downloader==0.1.2`；完整音视频检查另需 FFmpeg / ffprobe。真实下载验证范围为 macOS Apple Silicon，其他系统须在目标设备验收。根目录旧版 Release ZIP 对应另一条实现路线；安装本节推荐技能时，请使用上面的子目录链接。
+
 ## 基于 wx-downloader 的独立技能
 
 新增 [skills/wx-downloader/SKILL.md](https://github.com/Randy0609/wx-channels-download/blob/main/skills/wx-downloader/SKILL.md)：使用 [QinGeneral/wx-downloader](https://github.com/QinGeneral/wx-downloader) 解析分享链接并下载，附本地文件、SHA-256、ffprobe 和完整 FFmpeg 解码校验。已在 macOS Apple Silicon、Chrome、CLI `0.1.2` 上完成真实下载验证。
